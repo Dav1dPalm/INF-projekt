@@ -12,10 +12,12 @@ public class Movement : MonoBehaviour
     public float jumpforce;
     public float jumpCooldown;
     public float airMultiplier;
+    public float sprintMultiplier;
     bool readyToJump = true;
 
     [Header("Keybinds")]
     public KeyCode jumpKey = KeyCode.Space;
+    public KeyCode sprintKey = KeyCode.LeftShift;
 
     [Header("Ground Check")]
     public float playerHight;
@@ -81,6 +83,9 @@ public class Movement : MonoBehaviour
         // in air
         else if (!grounded)
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
+        
+        if (Input.GetKey(sprintKey) == true)
+            rb.AddForce(moveDirection.normalized * moveSpeed * 10f * sprintMultiplier, ForceMode.Force);
     }
 
     private void SpeedControl()
