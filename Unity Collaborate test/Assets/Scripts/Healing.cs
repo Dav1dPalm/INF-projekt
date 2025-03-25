@@ -2,20 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BoxTest : MonoBehaviour
+public class Healing : MonoBehaviour
 {
-    public float damage;
+    public float healAmount;
 
-    private void Start()
-    {
-        Destroy(gameObject, 10f);
-    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             var h = other.GetComponentInParent<Health>();
-            h.TakeDamage(damage);
+            h.Heal(healAmount);
             Destroy(gameObject);
         }
 

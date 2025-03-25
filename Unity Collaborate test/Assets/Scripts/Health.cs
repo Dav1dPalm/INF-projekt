@@ -23,11 +23,27 @@ public class Health : MonoBehaviour
         healthBar.SetSlider(currentHealth);
     }
 
+    public void Heal(float amount) 
+    {
+        currentHealth += amount;
+        healthBar.SetSlider(currentHealth);
+    }
+
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.K))
+        if (currentHealth > maxHealth)
         {
-            TakeDamage(20f);
+            currentHealth = maxHealth;
         }
+
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+
+    }
+    private void Die() 
+    {
+        Debug.Log("You died!");
     }
 }
