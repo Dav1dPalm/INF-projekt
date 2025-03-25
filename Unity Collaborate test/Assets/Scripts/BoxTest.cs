@@ -4,26 +4,19 @@ using UnityEngine;
 
 public class BoxTest : MonoBehaviour
 {
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag == "Player")
-        {
-            var healthComponent = collision.GetComponent<Health>();
-            if(healthComponent != null )
-            {
-                healthComponent.TakeDamage(1);
-            }
-        }
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public float damage;
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        Destroy(gameObject, 10f);
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            other.GetComponent<Health>().TakeDamage(damage);
+            Destroy(gameObject);
+        }
+
     }
 }
