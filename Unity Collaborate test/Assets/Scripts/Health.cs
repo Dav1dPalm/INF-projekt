@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class Health : MonoBehaviour
 {
@@ -44,6 +46,6 @@ public class Health : MonoBehaviour
     }
     private void Die() 
     {
-        Debug.Log("You died!");
+        SceneManager.LoadSceneAsync(2);
     }
 }
